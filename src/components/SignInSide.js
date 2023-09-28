@@ -65,7 +65,7 @@ const SignInSide = () => {
     setError(true);
 
     axios
-      .post("http://localhost:9999/usermanagement/login", {
+      .post("https://server-medilog-tp7g.vercel.app/usermanagement/login", {
         email: email,
         password: password,
       })

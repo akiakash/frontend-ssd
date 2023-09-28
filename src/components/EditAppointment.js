@@ -20,7 +20,7 @@ function EditAppointments() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9999/appointmentmanagement/${id}`)
+      .get(`https://server-medilog-tp7g.vercel.app/appointmentmanagement/${id}`)
       .then((response) => {
         setName(response.data.DoctorName);
         setPatientname(response.data.PatientName);
@@ -37,15 +37,18 @@ function EditAppointments() {
 
   function updateAppointment() {
     axios
-      .patch(`http://localhost:9999/appointmentmanagement/${id}`, {
-        DoctorName: name,
-        PatientName: patientname,
-        Age: age,
-        Date: date,
-        Time: time,
-        PhoneNumber: number,
-        Description: description,
-      })
+      .patch(
+        `https://server-medilog-tp7g.vercel.app/appointmentmanagement/${id}`,
+        {
+          DoctorName: name,
+          PatientName: patientname,
+          Age: age,
+          Date: date,
+          Time: time,
+          PhoneNumber: number,
+          Description: description,
+        }
+      )
       .then((response) => {
         window.location.reload();
         alert("successfull updated");
@@ -93,7 +96,6 @@ function EditAppointments() {
               }}
               alt="femalimage"
             />
-
           </div>
         </Card>
       </div>

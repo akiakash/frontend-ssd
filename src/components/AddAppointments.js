@@ -32,7 +32,7 @@ function AddAppointments() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9999/doctormanagement/${id}`)
+      .get(`https://server-medilog-tp7g.vercel.app/doctormanagement/${id}`)
       .then((response) => {
         setName(response.data.DoctorName);
 
@@ -43,7 +43,7 @@ function AddAppointments() {
 
   // useEffect(() => {
   //   axios
-  //     .get(`http://localhost:9999/usermanagement/${userid}`)
+  //     .get(`https://server-medilog-tp7g.vercel.app/usermanagement/${userid}`)
   //     .then((response) => {
   //       setPatientname(response.data.Name);
   //       setAppointment(response.data);
@@ -93,7 +93,7 @@ function AddAppointments() {
       setLoading(false);
     } else {
       axios
-        .post("http://localhost:9999/appointmentmanagement/", {
+        .post("https://server-medilog-tp7g.vercel.app/appointmentmanagement/", {
           DoctorName: name,
           PatientName: patientname,
           Age: age,

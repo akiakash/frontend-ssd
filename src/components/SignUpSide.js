@@ -135,7 +135,7 @@ export default function SignUp() {
       setLoading(false);
     } else {
       axios
-        .post("http://localhost:9999/usermanagement/signup", {
+        .post("https://server-medilog-tp7g.vercel.app/usermanagement/signup", {
           Name: name,
           email: email,
           PhoneNumber: phone,

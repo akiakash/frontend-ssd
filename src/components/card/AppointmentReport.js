@@ -15,7 +15,7 @@ function AppointmentReport() {
 
   const getRequest = () => {
     axios
-      .get(`http://localhost:9999/appointmentmanagement/`)
+      .get(`https://server-medilog-tp7g.vercel.app/appointmentmanagement/`)
       .then((res) => {
         setAppointment(res.data);
         console.log(res.data);

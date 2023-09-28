@@ -16,19 +16,21 @@ function Profile() {
   const [age, setAge] = useState("");
 
   useEffect(() => {
-    axios.get(`http://localhost:9999/usermanagement/${id}`).then((response) => {
-      setName(response.data.Name);
-      setEmail(response.data.email);
-      setNumber(response.data.PhoneNumber);
-      setAge(response.data.Age);
-      setUser(response.data);
-      console.log(response.data);
-    });
+    axios
+      .get(`https://server-medilog-tp7g.vercel.app/usermanagement/${id}`)
+      .then((response) => {
+        setName(response.data.Name);
+        setEmail(response.data.email);
+        setNumber(response.data.PhoneNumber);
+        setAge(response.data.Age);
+        setUser(response.data);
+        console.log(response.data);
+      });
   }, []);
 
   function updateUsers() {
     axios
-      .patch(`http://localhost:9999/usermanagement/${id}`, {
+      .patch(`https://server-medilog-tp7g.vercel.app/usermanagement/${id}`, {
         Name: name,
         email: email,
         PhoneNumber: number,
@@ -47,7 +49,7 @@ function Profile() {
 
   // function deleteUser(_id) {
   //   alert("Are you confirm to delete?");
-  //   fetch(`http://localhost:9999/usermanagement/${_id}`, {
+  //   fetch(`https://server-medilog-tp7g.vercel.app/usermanagement/${_id}`, {
   //     method: "DELETE",
   //   }).then((response) => {
   //     response.json();

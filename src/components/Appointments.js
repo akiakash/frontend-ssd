@@ -18,7 +18,7 @@ export default function Appointments() {
 
   const getRequest = () => {
     axios
-      .get(`http://localhost:9999/appointmentmanagement/`)
+      .get(`https://server-medilog-tp7g.vercel.app/appointmentmanagement/`)
       .then((res) => {
         // if ((res.data.userid = userID)) {
         //   setAppointment(res.data);
@@ -43,9 +43,12 @@ export default function Appointments() {
 
   function deleteAppointment(_id) {
     alert("Are you confirm to delete?");
-    fetch(`http://localhost:9999/appointmentmanagement/${_id}`, {
-      method: "DELETE",
-    }).then((response) => {
+    fetch(
+      `https://server-medilog-tp7g.vercel.app/appointmentmanagement/${_id}`,
+      {
+        method: "DELETE",
+      }
+    ).then((response) => {
       response.json();
       alert("Appointment Successfully Deleted...!");
     });
