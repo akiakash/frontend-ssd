@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,6 +13,11 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
+import { gapi } from "gapi-script";
+import Login from "./login";
+
+const ClientID =
+  "303647766373-i6unql6vklssl3ikf2u24d01ur9uii0m.apps.googleusercontent.com";
 
 const MadeWithLove = () => (
   <Typography variant="body2" color="textSecondary" align="center">
@@ -59,6 +64,16 @@ const SignInSide = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        ClientID: ClientID,
+        scope: "",
+      });
+    }
+    gapi.load("client:auth2", start);
+  });
 
   const handleSubmit = () => {
     setError(null);
@@ -133,6 +148,7 @@ const SignInSide = () => {
             >
               Sign In
             </Button>
+            <Login />
 
             <Grid container>
               <Grid item xs>
