@@ -67,10 +67,20 @@ const SignInSide = () => {
 
   useEffect(() => {
     function start() {
-      gapi.client.init({
-        ClientID: ClientID,
-        scope: "",
-      });
+      gapi.client
+        .init({
+          ClientID: ClientID,
+          scope: "",
+        })
+        .then(() => {
+          // Check if the user is already signed in
+          if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+            // User is signed in, navigate to "/home"
+            window.location = "/home";
+          } else {
+            // User is not signed in, you may perform sign-in here
+          }
+        });
     }
     gapi.load("client:auth2", start);
   });

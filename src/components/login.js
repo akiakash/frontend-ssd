@@ -1,11 +1,12 @@
 import { GoogleLogin } from "react-google-login";
 
-const ClientID =
+const clientId =
   "303647766373-i6unql6vklssl3ikf2u24d01ur9uii0m.apps.googleusercontent.com";
 
 function Login() {
   const onSuccess = (res) => {
     console.log("Login Successfull", res.profileObj);
+    window.location = "/home";
   };
 
   const onFailure = (res) => {
@@ -15,7 +16,7 @@ function Login() {
   return (
     <div id="signInButton">
       <GoogleLogin
-        ClientID={ClientID}
+        clientId={clientId}
         buttontext="Login"
         onSuccess={onSuccess}
         onFailure={onFailure}

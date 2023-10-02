@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,6 +9,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import { gapi } from "gapi-script";
+import Logout from "./logout";
+const ClientID =
+  "303647766373-i6unql6vklssl3ikf2u24d01ur9uii0m.apps.googleusercontent.com";
 
 const pages = ["Home", "Product", "Services", "Contact us", "Logout"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -63,12 +67,46 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  // useEffect(() => {
+  //   function logout() {
+  //     // Check if the Google API client library is available
+  //     if (typeof gapi !== "undefined" && gapi.auth2) {
+  //       // Revoke Google OAuth access (if using the Google Sign-In API)
+  //       const auth2 = gapi.auth2.getAuthInstance();
+  //       if (auth2) {
+  //         auth2.signOut().then(() => {
+  //           auth2.disconnect();
+  //           // Redirect to the home page after signing out
+  //           window.location = "/";
+  //         });
+  //       }
+  //     } else {
+  //       // If the Google API client library is not available, simply redirect to the home page
+  //       window.location = "/";
+  //     }
+  //   }
+
+  //   // Call the logout function when the component mounts
+  //   logout();
+  // }, []);
+
   function logout() {
-    window.localStorage.clear();
-
-    window.location = "/";
+    // Check if the Google API client library is available
+    if (typeof gapi !== "undefined" && gapi.auth2) {
+      // Revoke Google OAuth access (if using the Google Sign-In API)
+      const auth2 = gapi.auth2.getAuthInstance();
+      if (auth2) {
+        auth2.signOut().then(() => {
+          auth2.disconnect();
+          // Redirect to the home page after signing out
+          window.location = "/";
+        });
+      }
+    } else {
+      // If the Google API client library is not available, simply redirect to the home page
+      window.location = "/";
+    }
   }
-
   return (
     <AppBar
       elevation={0}
@@ -200,11 +238,10 @@ const ResponsiveAppBar = () => {
             </Button>
 
             <Button
-              onClick={logout}
               sx={{ my: 2, color: "#307172" }}
               style={{ marginRight: "10px" }}
             >
-              Logout
+              <Logout />
             </Button>
           </Box>
         </Toolbar>
